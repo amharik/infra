@@ -1,0 +1,12 @@
+version: '2'
+services:
+    load_balancer:
+        image: haproxy:latest
+        container_name: x-load_balancer
+        ports:
+            - "80:80"
+            - "443:443"
+            - "1936:1936"
+        volumes:
+            - ./load_balancer:/usr/local/etc/haproxy/
+
