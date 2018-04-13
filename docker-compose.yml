@@ -10,3 +10,22 @@ services:
         volumes:
             - ./load_balancer:/usr/local/etc/haproxy/
 
+    app_server:
+        image: app_server:latest
+        container_name: x-app_server
+        depends_on:
+            - passenger
+        ports:
+            - "3000:3000"
+
+    passenger:
+        image: passenger:5.0.28
+        container_name: x-passenger
+        build:
+            context: ./passenger/
+            dockerfile: Dockerfile
+            args:
+                PASSENGER_VERSION: "5.0.28"
+
+
+
